@@ -8,17 +8,13 @@
 	import { onMount } from 'svelte';
 	import IconGoogle from '$lib/icons/glue/IconGoogle.svelte';
 	import { page } from '$app/stores';
+	import IconCar from '$lib/icons/glue/IconCar.svelte';
 
 	const PRIVATE_NAVS = [
 		{
-			label: 'Sell item',
-			path: '/new',
-			icon: IconAdd
-		},
-		{
-			label: 'My items',
-			path: '/profile/items',
-			icon: IconHome
+			label: 'My rides',
+			path: '/profile/my-rides',
+			icon: IconCar
 		}
 	];
 
