@@ -2,6 +2,8 @@
 	import Auth from '$lib/components/glue/Auth.svelte';
 	import MobileDrawerContent from '$lib/components/glue/MobileDrawerContent.svelte';
 	import { APP_NAME, PUBLIC_NAVS } from '$lib/glue/config';
+	import { currentUser } from '$lib/glue/pocketbase';
+	import IconAdd from '$lib/icons/glue/IconAdd.svelte';
 	import './app.css';
 	import FeedbackModal from './FeedbackModal.svelte';
 </script>
@@ -62,6 +64,17 @@
 								{/if}
 							</div>
 						</div>
+						{#if $currentUser}
+							<a href="/add">
+								<button class="btn-primary btn-sm btn mr-4 gap-2 md:btn-md">
+									<IconAdd /> Add ride
+								</button>
+							</a>
+						{:else}
+							<label for="modal-auth" class="btn-primary btn-sm btn mr-4 gap-2 md:btn-md">
+								<IconAdd /> Add ride
+							</label>
+						{/if}
 						<Auth />
 					</div>
 				</div>
