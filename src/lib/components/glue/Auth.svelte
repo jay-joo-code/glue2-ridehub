@@ -1,16 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { APP_NAME, IS_GOOGLE_AUTH_ONLY } from '$lib/glue/config';
-	import IconAdd from '$lib/icons/glue/IconAdd.svelte';
-	import IconHome from '$lib/icons/glue/IconHome.svelte';
-	import IconLogout from '$lib/icons/glue/IconLogout.svelte';
-	import { currentUser, pb } from '$lib/glue/pocketbase';
-	import { onMount } from 'svelte';
-	import IconGoogle from '$lib/icons/glue/IconGoogle.svelte';
 	import { page } from '$app/stores';
+	import { APP_NAME, IS_GOOGLE_AUTH_ONLY } from '$lib/glue/config';
+	import { currentUser, pb } from '$lib/glue/pocketbase';
 	import IconCar from '$lib/icons/glue/IconCar.svelte';
+	import IconGoogle from '$lib/icons/glue/IconGoogle.svelte';
+	import IconLogout from '$lib/icons/glue/IconLogout.svelte';
+	import IconMessage from '$lib/icons/glue/IconMessage.svelte';
+	import { onMount } from 'svelte';
 
 	const PRIVATE_NAVS = [
+		{
+			label: 'Messages',
+			path: '/chatrooms',
+			icon: IconMessage
+		},
 		{
 			label: 'My rides',
 			path: '/profile/my-rides',
