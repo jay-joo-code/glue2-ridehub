@@ -6,6 +6,7 @@
 	import IconAdd from '$lib/icons/glue/IconAdd.svelte';
 	import './app.css';
 	import FeedbackModal from './FeedbackModal.svelte';
+	import RequireAuthButton from './RequireAuthButton.svelte';
 </script>
 
 <div class="w-screen">
@@ -64,17 +65,9 @@
 								{/if}
 							</div>
 						</div>
-						{#if $currentUser}
-							<a href="/add">
-								<button class="btn-primary btn-sm btn mr-4 gap-2 md:btn-md">
-									<IconAdd /> Add ride
-								</button>
-							</a>
-						{:else}
-							<label for="modal-auth" class="btn-primary btn-sm btn mr-4 gap-2 md:btn-md">
-								<IconAdd /> Add ride
-							</label>
-						{/if}
+						<RequireAuthButton href="/add" class="btn-primary btn-sm btn mr-4 gap-2 md:btn-md">
+							<IconAdd /> Add ride
+						</RequireAuthButton>
 						<Auth />
 					</div>
 				</div>
