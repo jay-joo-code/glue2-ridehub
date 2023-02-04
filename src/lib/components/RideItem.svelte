@@ -21,7 +21,7 @@
 		{:else if ride?.variant === 'rider'}
 			<div class="badge-info badge gap-2">
 				<IconPassenger />
-				Rider
+				Ride request
 			</div>
 		{/if}
 		<div class="flex items-center space-x-2">
