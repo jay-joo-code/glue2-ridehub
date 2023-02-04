@@ -10,6 +10,7 @@
 	import IconSeat from '$lib/icons/glue/IconSeat.svelte';
 	import dynamicAgo from '$lib/util/glue/dynamicAgo';
 	import { format } from 'date-fns';
+	import RequireAuthButton from './glue/RequireAuthButton.svelte';
 
 	export let ride;
 
@@ -73,14 +74,14 @@
 				class="tooltip tooltip-bottom before:right-auto before:left-[-0.5rem] before:content-[attr(data-tip)]"
 				data-tip="Send a message"
 			>
-				<button
+				<RequireAuthButton
 					class={`btn-primary btn-circle btn text-2xl ${isChatLoading && 'loading'}`}
 					on:click={handleChatClick}
 				>
 					{#if !isChatLoading}
 						<IconMessage />
 					{/if}
-				</button>
+				</RequireAuthButton>
 			</div>
 		</div>
 		<p>
