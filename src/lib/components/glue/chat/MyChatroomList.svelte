@@ -48,8 +48,15 @@
 					<div class="space-y-0.5 overflow-hidden">
 						<!-- top: name, origin, destination -->
 						<div class="flex items-center">
-							<p class="truncate font-medium">
-								{chatroom?.otherUser?.name}
+							<p class="truncate text-sm font-medium">
+								{chatroom?.otherUser?.name?.split(' ')[0]} •
+								<span class="uppercase text-base-content/80">{chatroom?.expand?.post?.origin}</span>
+								<span class="inline text-xl text-base-content/80 [&_svg]:inline">
+									<IconRightArrowLong />
+								</span>
+								<span class="uppercase text-base-content/80">
+									{chatroom?.expand?.post?.destination}
+								</span>
 							</p>
 						</div>
 
