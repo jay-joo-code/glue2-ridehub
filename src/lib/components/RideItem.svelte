@@ -60,7 +60,7 @@
 				{/if}
 
 				<!-- origin, destination -->
-				<div class="flex items-center space-x-2">
+				<div class="flex items-center space-x-2 uppercase">
 					<p class="text-2xl font-bold">{ride?.origin}</p>
 					<div class="mt-1 text-3xl">
 						<IconRightArrowLong />
