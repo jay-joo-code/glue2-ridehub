@@ -48,12 +48,12 @@
 			<div class="space-y-1">
 				<!-- ride variant badge -->
 				{#if ride?.variant === 'driver'}
-					<div class="badge badge-warning gap-2">
+					<div class="badge-warning badge gap-2">
 						<IconCar />
 						Driver
 					</div>
 				{:else if ride?.variant === 'rider'}
-					<div class="badge badge-info gap-2">
+					<div class="badge-info badge gap-2">
 						<IconPassenger />
 						Ride request
 					</div>
@@ -102,35 +102,22 @@
 		</div>
 	</div>
 
-	<!-- desc -->
-	<p class="text-sm text-base-content">
-		{ride?.desc}
-	</p>
 	<div class="space-y-1">
-		<div class="flex items-center space-x-2">
-			<div class="text-xl">
-				{#if ride?.variant === 'driver'}
-					<IconSeat />
-				{:else}
-					<IconPerson />
-				{/if}
-			</div>
-			<p>
-				{ride?.seatCount}
-				{ride?.variant === 'driver' ? 'open seats' : 'passengers'}
-			</p>
-		</div>
-		{#if ride?.isSplitGas}
-			<div class="flex items-center space-x-2">
-				<div class="text-xl">
-					<IconAlertCircle />
-				</div>
-				<p>
-					{ride?.variant === 'driver' ? 'Passengers must split gas' : 'Willing to split gas'}
-				</p>
-			</div>
-		{/if}
+		<!-- seats, isSplitGas -->
+		<p class="text-sm text-base-content">
+			{ride?.seatCount}
+			{ride?.variant === 'driver' ? 'open seats' : 'passengers'} • {ride?.variant === 'driver'
+				? 'Passengers must split gas'
+				: 'Willing to split gas'}
+		</p>
+
+		<!-- desc -->
+		<p class="text-sm text-base-content">
+			{ride?.desc}
+		</p>
 	</div>
+
+	<!-- updated timestamp -->
 	<div class="space-y-2">
 		<p class="text-sm text-base-content/70">
 			{dynamicAgo({
