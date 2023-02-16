@@ -6,8 +6,8 @@
 </script>
 
 <PageContainer title="Home" layout="aside-main">
+	<Aside>filters</Aside>
 	<Main>
 		<FeedRidesList />
 	</Main>
-	<Aside>aside</Aside>
 </PageContainer>
