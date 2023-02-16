@@ -6,8 +6,6 @@
 
 	export let chatroom;
 
-	$: console.log('chatroom?.expand?.post', chatroom?.expand?.post);
-
 	let otherUser = null;
 
 	const fetchOtherUser = async () => {
