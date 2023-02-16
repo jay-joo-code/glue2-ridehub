@@ -27,16 +27,18 @@
 
 {#if chatroom}
 	<div class="flex-1">
-		<div class="ml-2">
-			<div class="">
-				<p class="text-lg font-bold">{otherUser?.name}</p>
-			</div>
-			<div class="flex items-center space-x-0.5 text-base-content/90">
-				<p class="text-sm font-medium uppercase">{chatroom?.expand?.post?.origin}</p>
-				<span class="text-xl">
-					<IconRightArrowLong />
-				</span>
-				<p class="text-sm font-medium uppercase">{chatroom?.expand?.post?.destination}</p>
+		<div class="">
+			<div class="flex items-center">
+				<p class="text-md truncate font-medium">
+					{otherUser?.name} •
+					<span class="uppercase text-base-content/80">{chatroom?.expand?.post?.origin}</span>
+					<span class="inline text-xl text-base-content/80 [&_svg]:inline">
+						<IconRightArrowLong />
+					</span>
+					<span class="uppercase text-base-content/80">
+						{chatroom?.expand?.post?.destination}
+					</span>
+				</p>
 			</div>
 			<div>
 				<p class="text-xs text-base-content/90">
