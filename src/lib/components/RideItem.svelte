@@ -112,7 +112,7 @@
 					</div>
 					<div>
 						<div class="flex items-center space-x-1">
-							<p class="text-sm leading-5">{ride?.expand?.user?.name}</p>
+							<p class="text-sm font-medium leading-5">{ride?.expand?.user?.name}</p>
 							<span class="text-xs text-green-600 dark:text-green-300">
 								<IconCheckOutlined />
 							</span>
