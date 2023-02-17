@@ -45,66 +45,52 @@
 </script>
 
 <PageContainer title="Add a new ride">
-	<div class="prose">
+	<div class="prose space-y-4">
 		<h2>Add a new ride</h2>
-
-		<!-- <div class="alert bg-success/80 shadow-sm">
-			<div class="items-start text-white">
-				<div class="mt-1.5 flex-shrink-0">
-					<IconLock />
+		<div>
+			<h3>I am a ...</h3>
+			<div class="not-prose flex space-x-4 [&>div]:flex-1 ">
+				<div class="max-w-[14rem] space-y-2">
+					<button
+						class={`btn-outline btn-block btn-lg btn gap-2 ${variant === 'driver' && 'btn-active'}`}
+						on:click={() => {
+							variant = 'driver';
+						}}
+					>
+						<div class="text-2xl">
+							<IconCar />
+						</div>
+						driver
+					</button>
+					<p class="mb-0 text-left text-sm leading-5">Looking for passengers in my car.</p>
 				</div>
-				<span
-					>Your detailed information will only be visible to Cornell members with an @cornell.edu
-					email account.</span
-				>
+				<div class="max-w-[14rem] space-y-2">
+					<button
+						class={`btn-outline btn-block btn-lg btn flex gap-2 ${
+							variant === 'rider' && 'btn-active'
+						}`}
+						on:click={() => {
+							variant = 'rider';
+						}}
+					>
+						<div class="text-2xl">
+							<IconPassenger />
+						</div>
+						rider
+					</button>
+					<p class="mb-0 text-left text-sm leading-5">
+						Looking for a driver or someone to split an Uber.
+					</p>
+				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<div class="alert shadow-sm">
 			<div class="items-start">
 				<div class="mt-1.5 flex-shrink-0">
 					<IconLock />
 				</div>
-				<span
-					>Detailed trip information will only be visible to Cornell members with an @cornell.edu
-					email account.</span
-				>
-			</div>
-		</div>
-
-		<h3>I am a ...</h3>
-		<div class="not-prose flex space-x-4 [&>div]:flex-1 ">
-			<div class="max-w-[14rem] space-y-2">
-				<button
-					class={`btn-outline btn-block btn-lg btn gap-2 ${variant === 'driver' && 'btn-active'}`}
-					on:click={() => {
-						variant = 'driver';
-					}}
-				>
-					<div class="text-2xl">
-						<IconCar />
-					</div>
-					driver
-				</button>
-				<p class="mb-0 text-left text-sm leading-5">Looking for passengers in my car.</p>
-			</div>
-			<div class="max-w-[14rem] space-y-2">
-				<button
-					class={`btn-outline btn-block btn-lg btn flex gap-2 ${
-						variant === 'rider' && 'btn-active'
-					}`}
-					on:click={() => {
-						variant = 'rider';
-					}}
-				>
-					<div class="text-2xl">
-						<IconPassenger />
-					</div>
-					rider
-				</button>
-				<p class="mb-0 text-left text-sm leading-5">
-					Looking for a driver or someone to split an Uber.
-				</p>
+				<span>Only users signed in with an @cornell.edu email will be able to message you. </span>
 			</div>
 		</div>
 	</div>
@@ -131,6 +117,5 @@
 			bind:checked={isSplitGas}
 		/>
 	</div>
-	<button class={`btn-primary btn ${isSaving && 'loading'}`} on:click={handleSave}>Save ride</button
-	>
+	<button class={`btn-primary btn ${isSaving && 'loading'}`} on:click={handleSave}>Add ride</button>
 </PageContainer>
