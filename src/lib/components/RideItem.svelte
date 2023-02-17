@@ -7,10 +7,8 @@
 	import IconEditPen from '$lib/icons/glue/IconEditPen.svelte';
 	import IconMessage from '$lib/icons/glue/IconMessage.svelte';
 	import IconPassenger from '$lib/icons/glue/IconPassenger.svelte';
-	import IconPerson from '$lib/icons/glue/IconPerson.svelte';
 	import IconRefresh from '$lib/icons/glue/IconRefresh.svelte';
 	import IconRightArrowLong from '$lib/icons/glue/IconRightArrowLong.svelte';
-	import IconSeat from '$lib/icons/glue/IconSeat.svelte';
 	import dynamicAgo from '$lib/util/glue/dynamicAgo';
 	import { format } from 'date-fns';
 	import ComingSoonButton from './glue/ComingSoonButton.svelte';
