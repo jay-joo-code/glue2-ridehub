@@ -3,6 +3,7 @@
 	import { currentUser, pb } from '$lib/glue/pocketbase';
 	import IconAlertCircle from '$lib/icons/glue/IconAlertCircle.svelte';
 	import IconCar from '$lib/icons/glue/IconCar.svelte';
+	import IconCheckOutlined from '$lib/icons/glue/IconCheckOutlined.svelte';
 	import IconDelete from '$lib/icons/glue/IconDelete.svelte';
 	import IconEditPen from '$lib/icons/glue/IconEditPen.svelte';
 	import IconMessage from '$lib/icons/glue/IconMessage.svelte';
@@ -60,7 +61,7 @@
 			<div class="flex items-center space-x-2">
 				<!-- isUnavailable badge -->
 				{#if ride?.isUnavailable}
-					<div class="badge-error badge gap-2">
+					<div class="badge badge-error gap-2">
 						<IconAlertCircle />
 						Found riders
 					</div>
@@ -69,12 +70,12 @@
 				<!-- ride variant badge -->
 				<div class={`${ride?.isUnavailable && 'opacity-50'}`}>
 					{#if ride?.variant === 'driver'}
-						<div class="badge-warning badge gap-2">
+						<div class="badge badge-warning gap-2">
 							<IconCar />
 							Driver
 						</div>
 					{:else if ride?.variant === 'rider'}
-						<div class="badge-info badge gap-2">
+						<div class="badge badge-info gap-2">
 							<IconPassenger />
 							Ride request
 						</div>
@@ -105,12 +106,18 @@
 			<div class={`${ride?.isUnavailable && 'opacity-50'}`}>
 				<div class="flex items-center space-x-3">
 					<div class="avatar">
-						<div class="w-6 rounded-full">
+						<div class="w-7 rounded-full">
 							<img src={ride?.expand?.user?.avatarUrl} />
 						</div>
 					</div>
 					<div>
-						<p class="text-md font-medium">{ride?.expand?.user?.name}</p>
+						<div class="flex items-center space-x-1">
+							<p class="text-sm leading-5">{ride?.expand?.user?.name}</p>
+							<span class="text-xs text-green-300">
+								<IconCheckOutlined />
+							</span>
+						</div>
+						<p class="text-xs text-base-content/70">Cornell email verified</p>
 					</div>
 				</div>
 			</div>
