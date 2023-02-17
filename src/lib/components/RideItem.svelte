@@ -117,7 +117,7 @@
 								<IconCheckOutlined />
 							</span>
 						</div>
-						<p class="text-xs text-base-content/70">Cornell email verified</p>
+						<p class="text-xs text-base-content/70">Cornell verified</p>
 					</div>
 				</div>
 			</div>
