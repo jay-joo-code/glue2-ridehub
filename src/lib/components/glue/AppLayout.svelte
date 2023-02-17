@@ -39,7 +39,7 @@
 					<!-- app name -->
 					<div>
 						<button>
-							<a href="/" class="btn-ghost btn text-xl normal-case"
+							<a href="/" class="btn-ghost btn-sm btn text-xl normal-case "
 								>{APP_NAME}
 								{#if IS_BETA}
 									<span class="ml-1.5 text-base-content/60">beta</span>
@@ -70,7 +70,10 @@
 								{/if}
 							</div>
 						</div>
-						<RequireAuthButton href="/add" class="btn-primary btn-sm btn mr-4 gap-2 md:btn-md">
+						<RequireAuthButton
+							href="/add"
+							class="btn-primary btn-sm btn mr-2 gap-2 md:mr-4 md:btn-md"
+						>
 							<IconAdd /> Add ride
 						</RequireAuthButton>
 						<Auth />

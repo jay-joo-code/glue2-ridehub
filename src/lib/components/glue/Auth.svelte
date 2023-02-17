@@ -148,9 +148,9 @@
 		</ul>
 	</div>
 {:else}
-	<!-- <button>
-		<label for="modal-auth" class="btn-primary btn">Get started</label>
-	</button> -->
+	<button>
+		<label for="modal-auth" class="btn-sm btn md:btn-md">Sign in</label>
+	</button>
 
 	<input type="checkbox" id="modal-auth" class="modal-toggle" />
 	<label for="modal-auth" class="modal cursor-pointer">
