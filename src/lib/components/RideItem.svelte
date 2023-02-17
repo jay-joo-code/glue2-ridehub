@@ -63,7 +63,7 @@
 				{#if ride?.isUnavailable}
 					<div class="badge badge-error gap-2">
 						<IconAlertCircle />
-						Found riders
+						Already found riders
 					</div>
 				{/if}
 
@@ -171,21 +171,19 @@
 						{/if}
 					</div>
 				</div>
-			{:else}
-				<div class={`${ride?.isUnavailable && 'opacity-50'}`}>
-					<div
-						class="tooltip tooltip-bottom before:right-auto before:left-[-0.5rem] before:content-[attr(data-tip)]"
-						data-tip="Send a message"
+			{:else if !ride?.isUnavailable}
+				<div
+					class="tooltip tooltip-bottom before:right-auto before:left-[-0.5rem] before:content-[attr(data-tip)]"
+					data-tip="Send a message"
+				>
+					<RequireAuthButton
+						class={`btn-primary btn-circle btn text-2xl ${isChatLoading && 'loading'}`}
+						on:click={handleChatClick}
 					>
-						<RequireAuthButton
-							class={`btn-primary btn-circle btn text-2xl ${isChatLoading && 'loading'}`}
-							on:click={handleChatClick}
-						>
-							{#if !isChatLoading}
-								<IconMessage />
-							{/if}
-						</RequireAuthButton>
-					</div>
+						{#if !isChatLoading}
+							<IconMessage />
+						{/if}
+					</RequireAuthButton>
 				</div>
 			{/if}
 		</div>
