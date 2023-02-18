@@ -12,6 +12,7 @@
 	let dateFilter = sub(new Date(), { days: 5 });
 	let isShowRiders = true;
 	let isShowDrivers = true;
+	let isShowAvailableOnly = false;
 
 	const debouncedUpdateQuery = debounce(({ key, value }) => {
 		updateQuery({
@@ -38,6 +39,12 @@
 	});
 
 	$: updateQuery({
+		key: 'is-show-available-only',
+		value: String(isShowAvailableOnly),
+		$page
+	});
+
+	$: updateQuery({
 		key: 'is-show-drivers',
 		value: String(isShowDrivers),
 		$page
@@ -56,6 +63,7 @@
 	<TextInput label="Arriving at" bind:value={destinationFilter} />
 	<DatePicker label="Departing at" bind:value={dateFilter} />
 	<div class="mt-2">
+		<Checkbox label="Only show available rides" bind:checked={isShowAvailableOnly} />
 		<Checkbox label="Show drivers" bind:checked={isShowDrivers} />
 		<Checkbox label="Show riders" bind:checked={isShowRiders} />
 	</div>

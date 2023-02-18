@@ -8,6 +8,17 @@
 
 	$: {
 		(async () => {
+			// filter: location
+			const origin = $page.url?.searchParams?.get('origin');
+			const originFilter = origin ? `origin~"${origin?.toLowerCase()}"` : '';
+			const destination = $page.url?.searchParams?.get('destination');
+			const destinationFilter = destination ? `destination~"${destination?.toLowerCase()}"` : '';
+
+			// filter: date (departure date)
+			// subtract 2 days, to get rides in nearby dates
+			const date = $page.url?.searchParams?.get('date');
+			const dateFilter = date ? `date>="${sub(new Date(date), { days: 2 })?.toISOString()}"` : '';
+
 			// filter: variant
 			const isShowDrivers = $page.url?.searchParams?.get('is-show-drivers') === 'true';
 			const isShowRiders = $page.url?.searchParams?.get('is-show-riders') === 'true';
@@ -18,17 +29,17 @@
 				variantFilter = 'variant="rider"';
 			}
 
-			// filter: location
-			const origin = $page.url?.searchParams?.get('origin');
-			const originFilter = origin ? `origin~"${origin?.toLowerCase()}"` : '';
-			const destination = $page.url?.searchParams?.get('destination');
-			const destinationFilter = destination ? `destination~"${destination?.toLowerCase()}"` : '';
+			// filter: available only
+			const isShowAvailableOnly = $page.url?.searchParams?.get('is-show-available-only') === 'true';
+			const showAvailableOnlyFilter = isShowAvailableOnly ? 'isUnavailable=false' : '';
 
-			// filter: date (departure date)
-			const date = $page.url?.searchParams?.get('date');
-			const dateFilter = date ? `date>"${sub(new Date(date), { days: 2 })}"` : '';
-
-			const filters = [variantFilter, originFilter, destinationFilter, dateFilter];
+			const filters = [
+				originFilter,
+				destinationFilter,
+				dateFilter,
+				variantFilter,
+				showAvailableOnlyFilter
+			];
 
 			rides = await pb.collection('rides').getFullList(200, {
 				filter: filters?.filter((filter) => filter)?.join('&&'),
