@@ -20,8 +20,6 @@
 	let seatCount = 1;
 	let errors;
 
-	$: console.log('errors?.length', errors, Object.keys(errors || {})?.length);
-
 	$: {
 		if (variant === 'driver') isSplitGas = false;
 		else isSplitGas = true;
