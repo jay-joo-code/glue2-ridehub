@@ -19,6 +19,9 @@
 </script>
 
 <PageContainer>
+	<div class="prose mt-4">
+		<h2>My rides</h2>
+	</div>
 	{#each rides as ride (ride?.id)}
 		<RideItem {ride} />
 	{/each}
