@@ -18,6 +18,9 @@
 	let isSplitGas = true;
 	let desc = '';
 	let seatCount = 1;
+	let errors;
+
+	$: console.log('errors?.length', errors, Object.keys(errors || {})?.length);
 
 	$: {
 		if (variant === 'driver') isSplitGas = false;
@@ -28,18 +31,22 @@
 
 	const handleSave = async () => {
 		isSaving = true;
-		await pb.collection('rides').create({
-			variant,
-			origin,
-			destination,
-			date,
-			isFlexible,
-			isSplitGas,
-			desc,
-			user: $currentUser?.id,
-			seatCount
-		});
-		goto('/profile/my-rides');
+		try {
+			await pb.collection('rides').create({
+				variant,
+				origin: origin?.toLowerCase(),
+				destination: destination?.toLowerCase(),
+				date,
+				isFlexible,
+				isSplitGas,
+				desc,
+				user: $currentUser?.id,
+				seatCount
+			});
+			goto('/profile/my-rides');
+		} catch (error) {
+			errors = error?.data?.data;
+		}
 		isSaving = false;
 	};
 </script>
@@ -83,6 +90,9 @@
 					</p>
 				</div>
 			</div>
+			{#if errors?.variant}
+				<p class="text-sm text-error">{errors?.variant?.message}</p>
+			{/if}
 		</div>
 
 		<div class="alert shadow-sm">
@@ -98,8 +108,8 @@
 	<div class="divider" />
 
 	<div class="space-y-2 py-6">
-		<TextInput label="Departing from" bind:value={origin} />
-		<TextInput label="Arriving at" bind:value={destination} />
+		<TextInput label="Departing from" bind:value={origin} error={errors?.origin?.message} />
+		<TextInput label="Arriving at" bind:value={destination} error={errors?.destination?.message} />
 
 		<DatePicker label="Departing on" bind:value={date} />
 		<Checkbox label="I'm flexible with the depature date" bind:checked={isFlexible} />
@@ -110,6 +120,7 @@
 			type="number"
 			bind:value={seatCount}
 			label={variant === 'driver' ? 'Seats available' : 'Number of passengers'}
+			error={errors?.seatCount?.message}
 		/>
 		<Textarea bind:value={desc} label="Trip details" />
 		<Checkbox
@@ -118,4 +129,7 @@
 		/>
 	</div>
 	<button class={`btn-primary btn ${isSaving && 'loading'}`} on:click={handleSave}>Add ride</button>
+	{#if errors && Object.keys(errors)?.length > 0}
+		<p class="mt-2 text-sm text-error">There were errors with your input</p>
+	{/if}
 </PageContainer>
