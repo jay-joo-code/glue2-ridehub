@@ -61,10 +61,17 @@
 			<div class="flex items-center space-x-2">
 				<!-- isUnavailable badge -->
 				{#if ride?.isUnavailable}
-					<div class="badge badge-error gap-2">
-						<IconAlertCircle />
-						Already found riders
-					</div>
+					{#if ride?.variant === 'driver'}
+						<div class="badge badge-error gap-2">
+							<IconAlertCircle />
+							Already found riders
+						</div>
+					{:else}
+						<div class="badge badge-error gap-2">
+							<IconAlertCircle />
+							Found driver
+						</div>
+					{/if}
 				{/if}
 
 				<!-- ride variant badge -->
@@ -97,8 +104,8 @@
 			<!-- departure date -->
 			<div class={`${ride?.isUnavailable && 'opacity-50'}`}>
 				<p class="mb-4">
-					<span class="font-semibold">{format(new Date(ride?.date), 'MMM eo, iii')}</span>
-					{ride?.isFlexible && ' (flexible)'}
+					<span class="font-semibold">{format(new Date(ride?.date), 'MMM do, iii')}</span>
+					{ride?.isFlexible ? ' (flexible)' : ''}
 				</p>
 			</div>
 
