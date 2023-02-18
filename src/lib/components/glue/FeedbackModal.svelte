@@ -12,7 +12,7 @@
 	let step = 1;
 	let feedbackText = '';
 	let feedbackId = '';
-	const hideRouteIds = ['/chatrooms/[chatroomId]'];
+	const hideRouteIds = ['/chatrooms/[chatroomId]', '/add'];
 
 	const handleIconClick = async (review) => {
 		step = 2;
