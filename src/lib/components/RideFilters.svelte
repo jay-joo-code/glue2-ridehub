@@ -10,9 +10,9 @@
 	let originFilter = '';
 	let destinationFilter = '';
 	let dateFilter = sub(new Date(), { days: 5 });
-	let isShowRiders = true;
-	let isShowDrivers = true;
 	let isShowAvailableOnly = false;
+	let isShowDrivers = true;
+	let isShowRiders = true;
 
 	const debouncedUpdateQuery = debounce(({ key, value }) => {
 		updateQuery({
@@ -32,28 +32,9 @@
 		value: destinationFilter
 	});
 
-	$: updateQuery({
+	$: debouncedUpdateQuery({
 		key: 'date',
-		value: dateFilter.toISOString(),
-		$page
-	});
-
-	$: updateQuery({
-		key: 'is-show-available-only',
-		value: String(isShowAvailableOnly),
-		$page
-	});
-
-	$: updateQuery({
-		key: 'is-show-drivers',
-		value: String(isShowDrivers),
-		$page
-	});
-
-	$: updateQuery({
-		key: 'is-show-riders',
-		value: String(isShowRiders),
-		$page
+		value: dateFilter.toISOString()
 	});
 </script>
 
@@ -63,8 +44,38 @@
 	<TextInput label="Arriving at" bind:value={destinationFilter} />
 	<DatePicker label="Departing at" bind:value={dateFilter} />
 	<div class="mt-2">
-		<Checkbox label="Only show available rides" bind:checked={isShowAvailableOnly} />
-		<Checkbox label="Show drivers" bind:checked={isShowDrivers} />
-		<Checkbox label="Show riders" bind:checked={isShowRiders} />
+		<Checkbox
+			label="Only show available rides"
+			bind:checked={isShowAvailableOnly}
+			on:change={(event) => {
+				updateQuery({
+					key: 'is-show-available-only',
+					value: String(event?.target?.checked),
+					$page
+				});
+			}}
+		/>
+		<Checkbox
+			label="Show drivers"
+			bind:checked={isShowDrivers}
+			on:change={(event) => {
+				updateQuery({
+					key: 'is-show-drivers',
+					value: String(event?.target?.checked),
+					$page
+				});
+			}}
+		/>
+		<Checkbox
+			label="Show riders"
+			bind:checked={isShowRiders}
+			on:change={(event) => {
+				updateQuery({
+					key: 'is-show-riders',
+					value: String(event?.target?.checked),
+					$page
+				});
+			}}
+		/>
 	</div>
 </div>
