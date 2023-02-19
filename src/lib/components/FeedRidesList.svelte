@@ -6,6 +6,7 @@
 	import RideItem from './RideItem.svelte';
 
 	let rides: any[] = [];
+	let filters = [];
 
 	$: {
 		if (browser) {
@@ -17,8 +18,8 @@
 				const destinationFilter = destination ? `destination~"${destination?.toLowerCase()}"` : '';
 
 				// filter: date (departure date)
-				// subtract 2 days, to get rides in nearby dates
 				const date = $page.url?.searchParams?.get('date');
+				// subtract 2 days, to get rides in nearby dates
 				const dateFilter = date ? `date>="${sub(new Date(date), { days: 2 })?.toISOString()}"` : '';
 
 				// filter: variant
@@ -36,22 +37,26 @@
 					$page.url?.searchParams?.get('is-show-available-only') === 'true';
 				const showAvailableOnlyFilter = isShowAvailableOnly ? 'isUnavailable=false' : '';
 
-				const filters = [
+				filters = [
 					originFilter,
 					destinationFilter,
 					dateFilter,
 					variantFilter,
 					showAvailableOnlyFilter
 				];
-
-				rides = await pb.collection('rides').getFullList(200, {
-					filter: filters?.filter((filter) => filter)?.join('&&'),
-					expand: 'user',
-					sort: '-updated'
-				});
 			})();
 		}
 	}
+
+	const fetchRides = async (filters) => {
+		rides = await pb.collection('rides').getFullList(200, {
+			filter: filters?.filter((filter) => filter)?.join('&&'),
+			expand: 'user',
+			sort: '-updated'
+		});
+	};
+
+	$: fetchRides(filters);
 </script>
 
 <div class="prose mt-4">
