@@ -49,11 +49,13 @@
 	}
 
 	const fetchRides = async (filters) => {
-		rides = await pb.collection('rides').getFullList(200, {
-			filter: filters?.filter((filter) => filter)?.join('&&'),
-			expand: 'user',
-			sort: '-updated'
-		});
+		if (browser) {
+			rides = await pb.collection('rides').getFullList(200, {
+				filter: filters?.filter((filter) => filter)?.join('&&'),
+				expand: 'user',
+				sort: '-updated'
+			});
+		}
 	};
 
 	$: fetchRides(filters);
