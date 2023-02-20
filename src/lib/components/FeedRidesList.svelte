@@ -62,7 +62,7 @@
 </script>
 
 <div class="prose mt-4">
-	<h2>All rides ({rides?.length})</h2>
+	<h2>All rides</h2>
 </div>
 {#each rides as ride (ride?.id)}
 	<RideItem {ride} />
