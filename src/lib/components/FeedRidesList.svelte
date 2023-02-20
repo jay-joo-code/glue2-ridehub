@@ -23,8 +23,8 @@
 				const dateFilter = date ? `date>="${sub(new Date(date), { days: 2 })?.toISOString()}"` : '';
 
 				// filter: variant
-				const isShowDrivers = $page.url?.searchParams?.get('is-show-drivers') === 'true';
-				const isShowRiders = $page.url?.searchParams?.get('is-show-riders') === 'true';
+				const isShowDrivers = $page.url?.searchParams?.get('is-show-drivers') !== 'false';
+				const isShowRiders = $page.url?.searchParams?.get('is-show-riders') !== 'false';
 				let variantFilter = '';
 				if (isShowDrivers && !isShowRiders) {
 					variantFilter = 'variant="driver"';
